@@ -1,51 +1,41 @@
-# MECHM: Multimodal Emotion Analysis in Conversations for Mental Health Monitoring
+# DREAM: Deep 3D Facial Reconstruction for Emotion Analysis and Modeling
 
-# About the Project
+## About the Project
 
-This paper introduces a framework called MECHM, aiming to improve mental health monitoring by analyzing emotions in conversations. By combining visual, audio, and text data using cross-modal attention mechanisms, MECHM enhances emotion recognition. Experimental results demonstrate its effectiveness in detecting emotional distress compared to existing methods, offering the potential for timely interventions and advancements in mental health monitoring.
+DREAM (Deep 3D Facial Reconstruction for Emotion-Aware Health Monitoring) enhances parametric 3D face model reconstruction to capture nuanced emotional expressions. By integrating emotional detail encoding and decoding with FLAME and Render modules, the project synthesizes realistic 3D facial expressions. Training with deep perceptual emotion analysis improves expression fidelity, surpassing baseline techniques and demonstrating efficacy in health monitoring applications.
 
-# Installation
+## Installation
 
-1. Download the project from GitHub.
-2. Create a Conda environment named MECHM with Python 3.9:
-
+1. **Clone the Repository**: Download the project from GitHub.
+2. **Set Up Conda Environment**: Create a Conda environment named DREAM with Python 3.9:
     ```bash
-    conda create --name MECHM python=3.9
-    conda activate MECHM
+    conda create --name dream python=3.9
+    conda activate dream
+    conda install mamba -n base -c conda-forge
+    ```
+3. **Install Dependencies**: Install the required packages using pip:
+    ```bash
+    pip install -r requirements.txt
     ```
 
-3. Install the required packages:
+## Datasets
 
-    ```
-    conda install -c pytorch torch=2.0.0 torchaudio torchvision
-    conda install -c huggingface transformers=4.30.0 huggingface-hub=0.18.0
-    conda install matplotlib=3.7.0 psutil=5.9.4 pyyaml=6.0 regex=2022.10.31 tokenizers=0.13.2 tqdm=4.64.1 timm=0.6.13
-    conda install -c conda-forge iopath opencv-python=4.7.0.72 decord=0.6.0 scikit-image
-    conda install -c anaconda peft=0.2.0
-    conda install -c conda-forge sentence-transformers visual-genome wandb
-    pip install gradio==3.47.1 accelerate==0.20.3 bitsandbytes==0.37.0
-    ```
+The project utilizes three diverse datasets:
 
-# Datasets
+- **IEMOCAP Dataset**: Annotated with categorical labels like happiness, sadness, anger, and neutral, it offers ten hours of audio and video recordings from spontaneous sessions between actors. [IEMOCAP Dataset](https://sail.usc.edu/iemocap/iemocap_release.htm)
+- **AffectNet Dataset**: With over one million facial images annotated with seven primary emotions, it provides a rich resource for emotion recognition research. [AffectNet Dataset](http://mohammadmahoor.com/affectnet/)
+- **CMU-MOSEI Dataset**: Annotated with continuous emotion dimensions like valence and arousal, it includes multimodal data suitable for emotion recognition and sentiment analysis tasks. [CMU-MOSEI Dataset](http://multicomp.cs.cmu.edu/resources/cmu-mosi-dataset/)
 
-This study utilized three datasets for developing and evaluating the MECHM framework, covering various aspects of human emotion in conversations.
+## Steps for Training
 
-- **SEMAINE dataset:** Captures interactions between humans and avatars, providing video and audio recordings with annotations of emotional states.
-- **AESI dataset:** Contains sentences designed to evoke specific emotions, recorded by native speakers.
-- **ECF dataset:** Features conversations from the TV show Friends, with annotations linking emotions to conversation context.
+1. **Download Dataset**: Download the dataset from the provided links.
+2. **Data Processing**: Run the `process_data.py` script to preprocess the dataset.
+3. **Initiate Training**: Execute `python training/train_dream.py` to begin the training process.
 
-# Prepare the Pre-trained LLM Weights
+## Running the Demo
 
-Download the Llama-2-7b-chat-hf model from Huggingface to "MECHM/checkpoints/":
-[Download Llama-2-7b-chat-hf](https://huggingface.co/meta-llama/Llama-2-7b-chat-hf)
+Follow these steps to run the demo of the project:
 
-# Run the Project
-
-1. Run the following code to extract emotional cause:
-
-    ```
-    torchrun --nproc_per_node 1 eval_MECHM_cause.py --cfg-path evaluated/minigptv2_eval_MECHM_emotion.yaml
-    python emotion-cause.py
-    ```
-
-2. Save the final submission result as "outcomes/submit_all_cause_ck6_wd5_now-n_w-e.json" (w-avg.F1=0.3435).
+1. **Download Pre-trained Models**: Obtain the pre-trained DREAM model and FLAME model from the provided links.
+2. **Demo for Images**: Run `python dream_image.py` for processing images.
+3. **Demo for Videos**: Run `python dream_video.py` for processing videos.
