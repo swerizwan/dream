@@ -36,6 +36,7 @@ The project utilizes three diverse datasets:
 
 Follow these steps to run the demo of the project:
 
-1. **Download Pre-trained Models**: Obtain the pre-trained DREAM model and FLAME model from the provided links.
-2. **Demo for Images**: Run `python dream_image.py` for processing images.
-3. **Demo for Videos**: Run `python dream_video.py` for processing videos.
+1. **Download Pre-trained Model**: Download the pre-trained model from the [link](https://drive.google.com) and put it in the Pre-Trained/DREAM directory.
+2. **Download FLAME Model**: Download the FLAME model from the [link](https://drive.google.com) and put it in the FLAME directory.
+3. **Demo for Images**: Run `python dream_image.py` for processing images.
+4. **Demo for Videos**: Run `python dream_video.py` for processing videos.
